@@ -20,6 +20,9 @@ markup:
 
 menu:
   main:
+    - name: Artigos
+      pageRef: /articles
+      weight: 0
     - name: Docs
       pageRef: /docs
       weight: 1
