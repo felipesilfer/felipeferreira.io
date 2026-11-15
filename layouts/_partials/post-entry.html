@@ -1,0 +1,19 @@
+{{- /*
+  Cartão de artigo no estilo do site antigo. Usado na lista de artigos e na home.
+  Parâmetros: dict "page" <página> "heading" "h2"|"h3" (padrão h2).
+*/ -}}
+{{- $page := .page -}}
+{{- $heading := .heading | default "h2" -}}
+{{- with $page }}
+<article class="post-entry">
+  {{ printf "<%s class=\"post-entry-title\">%s</%s>" $heading (.Title | htmlEscape) $heading | safeHTML }}
+  {{- with partial "utils/page-description" . }}
+    <p class="post-entry-summary">{{ . }}</p>
+  {{- end }}
+  <footer class="post-entry-meta">
+    {{ partial "utils/format-date" .Date }}
+    {{- with .ReadingTime }} · {{ . }} min{{ end }}
+  </footer>
+  <a class="post-entry-link" href="{{ .RelPermalink }}" aria-label="{{ .Title }}"></a>
+</article>
+{{- end }}

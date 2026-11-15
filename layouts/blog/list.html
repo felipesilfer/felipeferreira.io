@@ -11,17 +11,7 @@
       {{- $pagerSize := site.Params.blog.list.pagerSize | default 5 -}}
       {{- $paginator := .Paginate $pages $pagerSize -}}
       {{- range $paginator.Pages }}
-        <article class="post-entry">
-          <h2>{{ .Title }}</h2>
-          {{- with partial "utils/page-description" . }}
-            <p class="post-entry-summary">{{ . }}</p>
-          {{- end }}
-          <footer class="post-entry-meta">
-            {{ partial "utils/format-date" .Date }}
-            {{- with .ReadingTime }} · {{ . }} min{{ end }}
-          </footer>
-          <a class="post-entry-link" href="{{ .RelPermalink }}" aria-label="{{ .Title }}"></a>
-        </article>
+        {{ partial "post-entry.html" (dict "page" . "heading" "h2") }}
       {{- end }}
       {{- if gt $paginator.TotalPages 1 -}}
         {{ partial "components/blog-pager.html" $paginator }}

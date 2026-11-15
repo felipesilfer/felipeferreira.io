@@ -85,6 +85,10 @@ html .hextra-footer {
 
 /* ---------- Página inicial: modo perfil ---------- */
 
+.home {
+  width: 100%;
+}
+
 .profile {
   display: flex;
   align-items: center;
@@ -93,6 +97,12 @@ html .hextra-footer {
   min-height: calc(100vh - var(--navbar-height) - 10rem);
   padding: 2rem 1.5rem;
   text-align: center;
+}
+
+/* Com artigos abaixo, o perfil deixa de ocupar a tela inteira */
+.home--with-posts .profile {
+  min-height: 0;
+  padding: 4rem 1.5rem 2.5rem;
 }
 
 .profile-inner img {
@@ -159,6 +169,39 @@ html .hextra-footer {
   transform: scale(0.96);
 }
 
+/* ---------- Home: últimos artigos ---------- */
+
+.recent-posts {
+  max-width: calc(var(--hextra-max-content-width) + 3rem);
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.recent-posts-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.recent-posts-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--old-primary);
+}
+
+.recent-posts-header a {
+  font-size: 0.95rem;
+  color: var(--old-secondary);
+}
+
+.recent-posts-header a:hover {
+  color: var(--old-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* ---------- Lista de artigos em cartões ---------- */
 
 /* Fundo cinza claro na lista, como a classe .list do tema antigo */
@@ -208,7 +251,7 @@ html:not(.dark) body:has(.post-list) .hextra-nav-container-blur {
   transform: scale(0.96);
 }
 
-.post-entry h2 {
+.post-entry-title {
   font-size: 24px;
   font-weight: 700;
   line-height: 1.3;

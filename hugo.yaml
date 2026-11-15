@@ -41,6 +41,8 @@ params:
       👨🏻‍💻Trabalho no [SERPRO](https://www.serpro.gov.br/), 👓Geek, 🎮Gamer, com interesse em 🐍Python, ⚙️DevOps, 📊Engenharia de Dados e 🤖IA.
     image: /images/profile.png
     imageTitle: Foto de Felipe Ferreira
+    # Quantos artigos recentes mostrar abaixo do perfil (0 esconde a seção)
+    recentPosts: 3
     buttons:
       - name: Não clique! 😝
         url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
