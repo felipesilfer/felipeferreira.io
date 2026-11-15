@@ -44,8 +44,31 @@ params:
     # Quantos artigos recentes mostrar abaixo do perfil (0 esconde a seção)
     recentPosts: 3
     buttons:
-      - name: Não clique! 😝
-        url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+      - name: 🎵 Não clique! 🎧😝
+        title: 🎶Uma música aleatória...🎧
+        # Cada clique sorteia um destino desta lista
+        urls:
+          - https://www.youtube.com/watch?v=dQw4w9WgXcQ
+          - https://www.youtube.com/watch?v=ucRulNQsuYQ
+          - https://www.youtube.com/watch?v=EH9meoWmAOM
+          - https://www.youtube.com/watch?v=LvetJ9U_tVY
+          - https://www.youtube.com/watch?v=Tk9TM7-eTmw
+          - https://www.youtube.com/watch?v=DnGdoEa1tPg
+          - https://www.youtube.com/watch?v=t365MuktYQs
+          - https://www.youtube.com/watch?v=mKehX9pnxEk
+          - https://www.youtube.com/watch?v=Oextk-If8HQ
+          - https://www.youtube.com/watch?v=U6eFQDaJmnk
+          - https://www.youtube.com/watch?v=xpVfcZ0ZcFM
+          - https://www.youtube.com/watch?v=Pib8eYDSFEI
+          - https://www.youtube.com/watch?v=h0ffIJ7ZO4U
+          - https://www.youtube.com/watch?v=1o84y-5-cO0
+          - https://www.youtube.com/watch?v=GWpvtTNJPVM
+          - https://www.youtube.com/watch?v=yv5xonFSC4c
+          - https://www.youtube.com/watch?v=EG7vOZXKMCk
+          - https://www.youtube.com/watch?v=9OFpfTd0EIs
+          - https://www.youtube.com/watch?v=1EORbL8N-R8
+          - https://www.youtube.com/watch?v=tjA7nAHOAww
+          - https://www.youtube.com/watch?v=0fcRa5Z6LmU
     social:
       - name: buymeacoffee
         title: Ko-fi
