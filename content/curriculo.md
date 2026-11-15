@@ -8,7 +8,7 @@ comments: false
 
 ## Sobre
 
-Sou empregado público federal e entrei há pouco tempo no SERPRO como Analista de Tecnologia, depois de 14 anos na Universidade Federal Fluminense (UFF). Na UFF trabalhei com sistemas web, automação e infraestrutura, e nesse tempo fiz cursos na área de dados.
+Sou funcionário público federal e entrei há pouco tempo no SERPRO como Analista de Tecnologia, depois de 14 anos na Universidade Federal Fluminense (UFF). Na UFF trabalhei com sistemas web, automação e infraestrutura, e nesse tempo fiz cursos na área de dados.
 
 No SERPRO trabalho na Divisão de Inovação e Pesquisa em Proteção de Dados Pessoais e Antifraude Cibernética e quero me dedicar a projetos de dados nessa área: engenharia de dados, proteção de dados pessoais e prevenção a fraudes.
 
