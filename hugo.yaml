@@ -22,8 +22,8 @@ markup:
 
 menu:
   main:
-    - name: Artigos
-      pageRef: /articles
+    - name: Blog
+      pageRef: /blog
       weight: 1
     - name: Currículo
       pageRef: /curriculo

@@ -5,7 +5,7 @@
 */ -}}
 {{ define "main" }}
   {{- $recentCount := site.Params.profile.recentPosts | default 0 -}}
-  {{- $articles := site.GetPage "/articles" -}}
+  {{- $articles := site.GetPage "/blog" -}}
   {{- $recent := slice -}}
   {{- with $articles }}{{ $recent = first $recentCount .RegularPages.ByDate.Reverse }}{{ end -}}
 

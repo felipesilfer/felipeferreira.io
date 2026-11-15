@@ -1,5 +1,5 @@
 ---
-title: Artigos
+title: Blog
 cascade:
   type: blog
 ---

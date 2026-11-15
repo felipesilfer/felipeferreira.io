@@ -6,7 +6,7 @@
 */ -}}
 {{- $current := . -}}
 {{- $limit := site.Params.articleArchive.limit | default 0 -}}
-{{- with site.GetPage "/articles" }}
+{{- with site.GetPage "/blog" }}
   {{- $all := .RegularPages.ByDate.Reverse -}}
   {{- $shown := cond (gt $limit 0) (first $limit $all) $all -}}
   <aside class="article-archive" aria-labelledby="article-archive-title">
