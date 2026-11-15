@@ -12,57 +12,55 @@ authors:
 ![](/images/articles/creating-a-chatbot-gpt3/gpt-3-thumb.png "OpenAI GPT-3")
 
 ## Motivação
-Em 2022, a OpenAI lançou o chatbot ChatGPT, que é baseado no modelo de linguagem GPT-3.5, uma versão aprimorada do GPT-3. 
+Em 2022, a OpenAI lançou o ChatGPT, um chatbot baseado no GPT-3.5, versão aprimorada do modelo de linguagem GPT-3.
 
-O GPT-3 é um dos modelos de linguagem mais avançados do mundo, com mais de 175 bilhões de parâmetros. A OpenAI disponibiliza publicamente uma API que permite a criação de aplicativos, como completar textos e gerar imagens, usando o poder do GPT-3. Além disso, há um teste gratuito disponível para experimentar a API.
+O GPT-3 tem mais de 175 bilhões de parâmetros. A OpenAI oferece uma API pública para criar aplicativos com ele, que completam textos ou geram imagens, por exemplo, e dá um crédito gratuito para testar.
 
 ## O projeto
 
-Resolvi tentar utilizar a API da OpenAI para criar um Chatbot pensando num caso de uso simples: Um bot para atendimento de estudantes de uma universidade genérica.
+Resolvi usar a API da OpenAI para criar um chatbot com um caso de uso simples: atender estudantes de uma universidade genérica.
 
-A ideia é que o Chatbot consiga responder dúvidas sobre a universidade, como saber contatos, endereço, cursos disponíveis, procedimentos, entre outras informações.
+A ideia é que o chatbot responda dúvidas sobre a universidade, como contatos, endereço, cursos disponíveis e procedimentos.
 
-Nesse artigo você vai aprender a:
+Neste artigo você vai aprender a:
 
-1. Configurar o acesso a API GPT-3 da OpenAI;
-2. Criar um Chatbot generalista usando o modelo Davici do GPT-3;
-3. Tratar os dados para criar um Fine Tunning do GPT-3;
-4. Criar um Chatbot para atendimento universitário usando o Modelo criado;
+1. Configurar o acesso à API do GPT-3 da OpenAI;
+2. Criar um chatbot generalista usando o modelo Davinci do GPT-3;
+3. Tratar os dados para fazer um fine-tuning do GPT-3;
+4. Criar um chatbot de atendimento universitário com o modelo treinado.
 
 ## O que será preciso
 
-Neste artigo presumo que:
+Neste artigo presumo que você:
 
-* Você tem conhecimento básico de Python.
-* Já possiu Python 3 instalado.
+* Tem conhecimento básico de Python.
+* Já tem o Python 3 instalado.
 * Está em ambiente Linux (ou Windows com WSL2).
 
 Observações:
 
-* Para facilitar a compreenção, este post é uma adaptação de um Jupyter Notebook que eu fiz e disponibilizarei o repositório futuramente.
-* Adaptações podem precisar ser feitas. 😉
+* Este post é uma adaptação de um Jupyter Notebook que eu fiz. Pretendo publicar o repositório no futuro.
+* Pode ser que você precise fazer adaptações. 😉
 
 ---
 
 ## Passo 1: Criar conta OpenAI
 
-Vá até a página de [**Sing Up da OpenAI**](https://platform.openai.com/signup) e siga as instruções para criar uma nova conta.
+Vá até a [página de cadastro (Sign Up) da OpenAI](https://platform.openai.com/signup) e siga as instruções para criar uma conta.
 
 ![](/images/articles/creating-a-chatbot-gpt3/signup-opneai.png)
 
 ## Passo 2: Criar uma API Key
 
-Depois que de ter feito login na sua conta OpenAI, clique em '**Personal**', no canto superior direito, em seguida vá em '**View API keys**'.
+Depois de entrar na sua conta OpenAI, clique em **Personal**, no canto superior direito, e em seguida em **View API keys**.
 
 ![](/images/articles/creating-a-chatbot-gpt3/create-api-key.png)
 
-Isso vai levá-lo até página de '**API Keys**', onde deve-se clicar no botão '**+ Create new secret key**' que irá gerar sua Key que será usada posteriomente no código.
+Na página **API Keys**, clique no botão **+ Create new secret key** para gerar a chave que vamos usar no código.
 
 ![](/images/articles/creating-a-chatbot-gpt3/create-new-secret-key.png)
 
-Vamos salvar a **API Key**  que foi gerada num *YAML file* com o nome ``openai-apikey.yml`` contendo a API key da sua conta OpenAI. Dessa forma podemos usá-la em nosso código.
-
- No corpo do arquivo vamos seguir esse formato:
+Salve a chave gerada num arquivo YAML chamado ``openai-apikey.yml``, para o código poder lê-la. O arquivo segue este formato:
 
 ```YAML
 API-key:  "xx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -70,22 +68,22 @@ API-key:  "xx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 ## Passo 3: Implementar Chatbot Genérico
 
-Vamos fazer uso das bibliotecas OpenAI e Pandas no código, portando as mesmas devem ser instaladas:
+O código usa as bibliotecas OpenAI e Pandas, então instale as duas:
 
 >Terminal:
 ```console
 pip install openai pandas
 ```
 
-Outro passo importante é variável de ambiente ``OPENAI_API_KEY```` adicionando a seguinte linha ao seu script de inicialização do shell (por exemplo, .bashrc, zshrc, etc.) ou executando-a na linha de comando antes do comando de no seu terminal:
+Defina também a variável de ambiente ``OPENAI_API_KEY``. Adicione a linha abaixo ao script de inicialização do seu shell (por exemplo, `.bashrc` ou `.zshrc`) ou execute-a no terminal antes de rodar o código:
 
 >Terminal:
 ```console
 export OPENAI_API_KEY="xx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
-Depois desses ajustes deixamos o ambiente pronto para acessar a API.
+Com isso, o ambiente está pronto para acessar a API.
 
- Segue agora uma implentação de um Chatbot genérico usando a GPT3 usando a API da OpenAI:
+Esta é uma implementação de um chatbot genérico com o GPT-3, pela API da OpenAI:
 
 >Python:
 ```python
@@ -141,19 +139,19 @@ simple_chat("text-davinci-003")
 ```
 
 
-## Passo 4: Preparando Dataset para Fine tunning
+## Passo 4: Preparando o dataset para o fine-tuning
 
-Fine tuning é o ajuste fino dado a um modelo para que atenda melhor um determinado fim.
+Fine-tuning é o ajuste fino de um modelo para que ele atenda melhor a uma finalidade específica.
 
-Para fins de estudo, vamos realizar o fine tunning para um chatbot com finalidade de responder perguntas básicas sobre uma universidade.
+Como estudo, vamos fazer o fine-tuning de um chatbot que responde perguntas básicas sobre uma universidade.
 
-Para treinar o modelo, será usado o Dataset ``intents.json`` disponível no Kaggle: [**University Chatbot Dataset - by Niralii Vaghani**](https://www.kaggle.com/dsv/5024271 "University Chatbot Dataset - by Niralii vaghani")
+Para treinar o modelo, vamos usar o dataset ``intents.json``, disponível no Kaggle: [University Chatbot Dataset, de Niralii Vaghani](https://www.kaggle.com/dsv/5024271 "University Chatbot Dataset - by Niralii vaghani").
 
 ### Formatação
 
-Na documentação é informado que o dataset de treinamento deve informar ao GPT-3 o que você gostaria que ele respoda.
+Segundo a documentação, o dataset de treinamento mostra ao GPT-3 o que você gostaria que ele respondesse.
 
-Para isso os dados de treinamento devem estar no formato de documento [JSONL](https://jsonlines.org/) onde cada linha representa um par prompt-resposta correspondentes. Conforme exemplo abaixo:
+Os dados precisam estar no formato [JSONL](https://jsonlines.org/), em que cada linha é um par de prompt e resposta, como neste exemplo:
 
 ```JSON
 {"prompt": "<prompt text> ->", "completion": " <ideal generated text> \n"}
@@ -162,8 +160,8 @@ Para isso os dados de treinamento devem estar no formato de documento [JSONL](ht
 ...
 ```
 
-### Tradução e formatação do Dataset
-Para traduzir o dataset do inglês para português usando a API, pode ser usado o código a seguir, mas pode demorar um pouco devido o limite de 60 requests / min que a API tem:
+### Tradução e formatação do dataset
+O código a seguir traduz o dataset do inglês para o português usando a API. Ele demora um pouco por causa do limite de 60 requisições por minuto da API:
 
 >Python:
 ```python
@@ -205,7 +203,7 @@ with open('dataframe.jsonl', 'w', encoding='utf-8') as file:
     file.write(df_output.to_json(orient='records', lines=True, force_ascii=False))
 ```
 
-Para não gastar crédito do Trial Free da plataforma, foi feita a tradução por fora do dataset original, e o nomeamos como `intents_ptBR.json`.
+Para não gastar o crédito gratuito da plataforma, traduzi o dataset original por fora e salvei o resultado como `intents_ptBR.json`.
 
 >Python:
 ```python
@@ -224,7 +222,7 @@ df.head(5)
 
 </br>
 
-O código para reformatação do data é similar ao anterior, sendo apenas retirada a tradução pela função ``translateGPT()``:
+O código de reformatação é o mesmo de antes, só sem a tradução pela função ``translateGPT()``:
 
 >Python:
 ```python
@@ -255,7 +253,7 @@ df_output.head(5)
 
 </br>
 
-Após transformado, o dataset deve ser salvo em arquivo JSONL conforme sugere a documentação:
+Depois de transformado, o dataset deve ser salvo em um arquivo JSONL, como pede a documentação:
 
 >Python:
 ```python
@@ -264,10 +262,10 @@ with open('dataframe.jsonl', 'w', encoding='utf-8') as file:
     file.write(df_output.to_json(orient='records', lines=True, force_ascii=False))
 ```
 
-### Checando qualidade do dataframe
-Ao instalar a lib OpenAI, junto dela vem uma ferramenta para checar a qualidade do dataset antes de realizar o upload do mesmo para o processamento do fine tunning.
+### Checando a qualidade do dataframe
+A biblioteca OpenAI vem com uma ferramenta que confere a qualidade do dataset antes do upload para o fine-tuning.
 
-O comando ``openai tools fine_tunes.prepare_data -f`` analisa o arquivo JSONL, e para nosso arquivo, passamos os parâmetros ``y`` para remoção de duplicatas, ``n`` dividir o arquivo em sets separados de treino  e validação (devido o dataset não ser grande o bastante pra isso), e ``y``  para salvar as modificações num novo arquivo ``'dataframe_prepared.jsonl'``, o que vai retornar um Prompt parecido com este:
+O comando ``openai tools fine_tunes.prepare_data -f`` analisa o arquivo JSONL. Para o nosso arquivo, respondemos ``y`` para remover as duplicatas, ``n`` para não dividir o arquivo em conjuntos de treino e validação (o dataset não é grande o bastante para isso) e ``y`` para salvar as mudanças num novo arquivo, ``'dataframe_prepared.jsonl'``. A saída é parecida com esta:
 
 >Terminal:
 ```console
@@ -322,7 +320,7 @@ df.head(10)
 </br>
 
 
-Executando o comando pela segunda vez, vai mostrar como deve ser a saída quando um dataframe está formatado da maneira correta, o resultado deve ser um prompt como este:
+Rodando o comando de novo, vemos a saída de um dataframe formatado corretamente:
 
 >Terminal:
 ```console
@@ -347,11 +345,9 @@ printf "n" | openai tools fine_tunes.prepare_data -f dataframe_prepared.jsonl
     Once your model starts training, it'll approximately take 14.07 minutes to train a `curie` model, and less for `ada` and `babbage`. Queue will approximately take half an hour per job ahead of you.
 ```
 
-## Passo 5: Upload do Dataset para preparar o Fine tunning
+## Passo 5: Upload do dataset para o fine-tuning
 
-O usando o command line tools da OpenAI, ou a lib no exemplo a seguir, preparamos o dataframe que foi tratado para upload.
-
-Com isso ele ganha um id que deve ser salvo para referenciarmos durante a criação do fine tunning:
+O upload do dataframe tratado pode ser feito pela ferramenta de linha de comando da OpenAI ou pela biblioteca, como no exemplo a seguir. O arquivo enviado recebe um ID, que precisamos guardar para criar o fine-tuning:
 
 >Python:
 ```python
@@ -379,12 +375,12 @@ upload_response
 ```
 
 
-### Criando Fine Tunning
-Após o upload, podemos treinar o modelo de Fine Tunning usando a lib OpenAI.
+### Criando o fine-tuning
+Depois do upload, treinamos o modelo com a biblioteca OpenAI.
 
-Passaremos como parâmetros o ``training_file`` identificado pelo ID coletado anteriormente, e o ``model`` que é o ID do modelo em que o fine tunning vai se basear, que no nosso caso é o ``davinci``.
+Os parâmetros são o ``training_file``, com o ID do arquivo enviado, e o ``model``, o modelo-base do fine-tuning, que no nosso caso é o ``davinci``.
 
-Devemos ficar atentos ao ID do finetune e salvá-lo para podermos checar o andamento do processamento, conforme exemplo abaixo:
+Guarde o ID do fine-tuning para acompanhar o andamento do treinamento:
 
 >Python:
 ```python
@@ -445,7 +441,7 @@ print(finetune_id)
 ft-iMXzAEiUcFE4nZLDd5kp6tCY
 ```
 
-Para checar o progresso do treinamento do modelo, podemos usar o command line tool informando o ID do fine tune que salvamos anteriormente e quando o mesmo estiver concluído, trará um prompt parecido com este quando concluir o treinamento (execute mais de uma vez para acompanhar), informando o ID do modelo gerado:
+Para acompanhar o treinamento, use a ferramenta de linha de comando com o ID do fine-tuning. Execute mais de uma vez até o fim. Quando o treinamento termina, a saída mostra o ID do modelo gerado:
 
 >Terminal:
 ```console
@@ -471,7 +467,7 @@ openai api fine_tunes.follow -i ft-iMXzAEiUcFE4nZLDd5kp6tCY
     openai api completions.create -m davinci:ft-personal-2023-04-16-00-36-03 -p <YOUR_PROMPT>
 ```
 
-Recuperando o ``fine_tuned_model`` do último fine tune realizado (assegurar na etapa anterior que o fine tune foi concluído):
+Recuperando o ``fine_tuned_model`` do último fine-tuning (confira na etapa anterior que ele terminou):
 
 >Python:
 ```python
@@ -484,11 +480,11 @@ print(finetuned_model_id)
 ```
 
 
-### Testando o modelo de Fine Tunning treinado
+### Testando o modelo treinado
 
-Para testar o modelo, basta criar uma nova instância de chat passando o ``finetuned_model_id`` do fine tunning  como parâmetro da engine.
+Para testar o modelo, basta abrir um novo chat passando o ``finetuned_model_id`` como engine.
 
-Segue prompt resultante do teste:
+Este foi o resultado do teste:
 
 >Python:
 ```python
@@ -567,17 +563,15 @@ simple_chat(finetuned_model_id)
 
 ## Conclusão
 
-Foi possivel criar um chatbot com respostas razoáveis mesmo um Dataset considerado pequeno (aproximadamente 500 entradas), sendo possível concluir que com um dataset mais robusto os resultados podem ser ainda melhores.
+Consegui criar um chatbot com respostas razoáveis mesmo com um dataset pequeno, de aproximadamente 500 entradas. Com um dataset maior, os resultados devem ser ainda melhores.
 
 ### Pontos observados
 
-- A documentação da OpenAI é um pouco falha, misturando instruções da Lib Python com HTTP request methods no mesmo local, dificultando um pouco encontrar referência
-- O custo para treinamento do Fine Tunning é realmente barato, e o custo de uso dos modelos prontos ou dos modelos criados é mais baixo ainda
-- É dado um saldo de 18 dólares como Free Trial, o que possibilita fazer realmente muita coisa legal dado o baixo custo
-- O tratamento do Dataset é onde é necessário dedicar a maior parte do esforço, visto que a má elaboração do Dataset implica negativamente na qualidade das respostas
+- A documentação da OpenAI é um pouco falha: mistura instruções da biblioteca Python com requisições HTTP no mesmo lugar, o que dificulta encontrar as referências.
+- O treinamento do fine-tuning é barato (este custou US$ 2,01), e usar os modelos prontos ou treinados custa menos ainda.
+- O teste gratuito dá um saldo de 18 dólares, o que permite fazer muita coisa legal com esse custo baixo.
+- A maior parte do esforço vai para o tratamento do dataset, porque um dataset mal elaborado piora a qualidade das respostas.
 
 ### Possibilidades futuras
 
-O mais importante para criação de um chatbot é a qualidade dos dados coletados e organizados para montar o Dataset de treinamento.
-Seguir as boas práticas sugeridas na documentação é realmente muito importante.
-Nesse caso de uso eu não criei prompts mais complexos para melhorar a qualidade das resposta, mas é possível ser feito isso para enriquecer as respostas do chatbot, e eu recomendo.
+Neste caso de uso não criei prompts mais elaborados para melhorar as respostas. Dá para fazer isso, seguindo as boas práticas da documentação, e eu recomendo.
