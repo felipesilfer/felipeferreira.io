@@ -53,6 +53,9 @@ params:
       - name: github
         title: GitHub
         url: https://github.com/felipesilfer
+      - name: instagram
+        title: Instagram
+        url: https://instagram.com/felipesilfer/
       - name: twitter
         title: Twitter
         url: https://twitter.com/felipesilfer
