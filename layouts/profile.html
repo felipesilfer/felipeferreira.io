@@ -36,9 +36,9 @@
                 {{- range . }}
                   {{- /* "urls" (lista): cada clique leva a um link sorteado; sem JS, vale o primeiro */ -}}
                   {{- if .urls }}
-                    <a class="profile-button" href="{{ index .urls 0 }}" data-links="{{ .urls | jsonify }}"{{ with .title }} title="{{ . }}"{{ end }} rel="noopener">{{ .name }}</a>
+                    <a class="profile-button" href="{{ index .urls 0 }}" data-links="{{ .urls | jsonify }}"{{ with .title }} title="{{ . }}"{{ end }} target="_blank" rel="noopener">{{ .name }}</a>
                   {{- else }}
-                    <a class="profile-button" href="{{ .url }}"{{ with .title }} title="{{ . }}"{{ end }} rel="noopener">{{ .name }}</a>
+                    <a class="profile-button" href="{{ .url }}"{{ with .title }} title="{{ . }}"{{ end }} target="_blank" rel="noopener">{{ .name }}</a>
                   {{- end }}
                 {{- end }}
               </div>
