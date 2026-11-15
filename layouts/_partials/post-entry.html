@@ -6,14 +6,15 @@
 {{- $heading := .heading | default "h2" -}}
 {{- with $page }}
 <article class="post-entry">
+  <p class="post-entry-meta">
+    {{- /* Data curta, ex.: "Nov 15, 2026" (mês no idioma do site) */ -}}
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ replace (.Date | time.Format "Jan 2, 2006") "." "" | strings.FirstUpper }}</time>
+    {{- with .ReadingTime }} · {{ . }} min{{ end -}}
+  </p>
   {{ printf "<%s class=\"post-entry-title\">%s</%s>" $heading (.Title | htmlEscape) $heading | safeHTML }}
   {{- with partial "utils/page-description" . }}
     <p class="post-entry-summary">{{ . }}</p>
   {{- end }}
-  <footer class="post-entry-meta">
-    {{ partial "utils/format-date" .Date }}
-    {{- with .ReadingTime }} · {{ . }} min{{ end }}
-  </footer>
   {{- /* Fica acima do link que cobre o cartão (z-index no CSS) */ -}}
   {{ partial "tag-links.html" . }}
   <a class="post-entry-link" href="{{ .RelPermalink }}" aria-label="{{ .Title }}"></a>

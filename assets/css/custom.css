@@ -365,8 +365,17 @@ html:not(.dark) body:has(.post-list) .hextra-nav-container-blur {
 }
 
 .post-entry-meta {
+  margin-bottom: 6px;
   font-size: 13px;
   color: var(--old-secondary);
+}
+
+/* Linha divisória entre o resumo e as tags do cartão */
+.post-entry .tag-links {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--old-secondary);
+  border-top-color: color-mix(in srgb, var(--old-secondary) 45%, transparent);
 }
 
 /* ---------- Tags ---------- */
