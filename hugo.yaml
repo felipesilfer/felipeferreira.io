@@ -39,7 +39,7 @@ params:
     title: Olá, eu sou o Felipe 👋
     description: |
       👨🏻‍💻Trabalho no [SERPRO](https://www.serpro.gov.br/), 👓Geek, 🎮Gamer, com interesse em 🐍Python, ⚙️DevOps, 📊Engenharia de Dados e 🤖IA.
-    image: /images/profile.png
+    image: /images/profile.jpg
     imageTitle: Foto de Felipe Ferreira
     # Quantos artigos recentes mostrar abaixo do perfil (0 esconde a seção)
     recentPosts: 3
