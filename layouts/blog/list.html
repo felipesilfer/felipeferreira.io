@@ -1,0 +1,31 @@
+{{- /* Lista de artigos em cartões, no estilo do site antigo. Baseado em layouts/blog/list.html do Hextra. */ -}}
+{{ define "main" }}
+  <div class="hx:mx-auto hx:flex hextra-max-page-width">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" true) }}
+    <main id="content" class="post-list">
+      <header class="post-list-header">
+        {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
+        <div class="post-list-intro">{{ .Content }}</div>
+      </header>
+      {{- $pages := partial "utils/sort-pages" (dict "page" . "by" site.Params.blog.list.sortBy "order" site.Params.blog.list.sortOrder) -}}
+      {{- $pagerSize := site.Params.blog.list.pagerSize | default 5 -}}
+      {{- $paginator := .Paginate $pages $pagerSize -}}
+      {{- range $paginator.Pages }}
+        <article class="post-entry">
+          <h2>{{ .Title }}</h2>
+          {{- with partial "utils/page-description" . }}
+            <p class="post-entry-summary">{{ . }}</p>
+          {{- end }}
+          <footer class="post-entry-meta">
+            {{ partial "utils/format-date" .Date }}
+            {{- with .ReadingTime }} · {{ . }} min{{ end }}
+          </footer>
+          <a class="post-entry-link" href="{{ .RelPermalink }}" aria-label="{{ .Title }}"></a>
+        </article>
+      {{- end }}
+      {{- if gt $paginator.TotalPages 1 -}}
+        {{ partial "components/blog-pager.html" $paginator }}
+      {{- end -}}
+    </main>
+  </div>
+{{- end -}}

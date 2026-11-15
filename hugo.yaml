@@ -1,7 +1,9 @@
 # Hugo configuration file
 baseURL: https://felipeferreira.io/
 languageCode: pt-br
+defaultContentLanguage: pt
 title: Felipe Ferreira
+enableEmoji: true
 
 # import hextra as module
 module:
@@ -22,35 +24,54 @@ menu:
   main:
     - name: Artigos
       pageRef: /articles
-      weight: 0
-    - name: Docs
-      pageRef: /docs
       weight: 1
-    - name: About
-      pageRef: /about
+    - name: Buscar
       weight: 2
-    - name: Contact ↗
-      url: "https://github.com/felipesilfer"
-      weight: 3
-    - name: Search
-      weight: 4
       params:
         type: search
     - name: GitHub
-      weight: 5
-      url: "https://github.com/felipesilfer/felipeferreira.io"
+      weight: 3
+      url: "https://github.com/felipesilfer"
       params:
         icon: github
 
 params:
+  # Página inicial em "modo perfil", como no site antigo (layouts/profile.html)
+  profile:
+    title: Olá, eu sou o Felipe 👋
+    description: |
+      Trabalho na [UFF](https://www.uff.br/) 🧑🏽‍💻
+      Estudo de Ciência de Dados 🎲
+    image: /images/profile.png
+    imageTitle: Foto de Felipe Ferreira
+    buttons:
+      - name: Não clique! 😝
+        url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    social:
+      - name: buymeacoffee
+        title: Ko-fi
+        url: https://ko-fi.com/felipesilfer
+      - name: github
+        title: GitHub
+        url: https://github.com/felipesilfer
+      - name: twitter
+        title: Twitter
+        url: https://twitter.com/felipesilfer
+      - name: linkedin
+        title: LinkedIn
+        url: https://www.linkedin.com/in/felipesilfer/
+
   navbar:
     displayTitle: true
     displayLogo: false
 
+  theme:
+    default: system
+    displayToggle: true
+
   footer:
-    displayCopyright: false
-    displayPoweredBy: true
+    displayCopyright: true
+    displayPoweredBy: false
 
   editURL:
-    enable: true
-    base: "https://github.com/felipesilfer/felipeferreira.io/edit/main/content"
+    enable: false

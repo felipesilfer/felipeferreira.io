@@ -1,0 +1,36 @@
+{{- /* Página inicial em "modo perfil", reproduzindo o site antigo. Configuração em params.profile no hugo.yaml. */ -}}
+{{ define "main" }}
+  <div class="hx:mx-auto hx:flex hextra-max-page-width">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+    <main id="content" class="profile">
+      {{- with site.Params.profile }}
+        <div class="profile-inner">
+          {{- with .image }}
+            <img src="{{ . | relURL }}" alt="{{ $.Site.Params.profile.imageTitle | default "Foto de perfil" }}" width="150" height="150" />
+          {{- end }}
+          <h1>{{ .title | default site.Title | markdownify }}</h1>
+          {{- with .description }}
+            <div class="profile-description">{{ . | markdownify }}</div>
+          {{- end }}
+          {{- with .social }}
+            <div class="social-icons">
+              {{- range . }}
+                <a href="{{ .url }}" target="_blank" rel="noopener noreferrer me" title="{{ .title | default .name }}" aria-label="{{ .title | default .name }}">
+                  {{- partial "social-icon.html" .name -}}
+                </a>
+              {{- end }}
+            </div>
+          {{- end }}
+          {{- with .buttons }}
+            <div class="profile-buttons">
+              {{- range . }}
+                <a class="profile-button" href="{{ .url }}" rel="noopener">{{ .name }}</a>
+              {{- end }}
+            </div>
+          {{- end }}
+        </div>
+      {{- end }}
+      {{ .Content }}
+    </main>
+  </div>
+{{ end }}
