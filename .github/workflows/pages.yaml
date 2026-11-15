@@ -26,8 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.156.0
-      HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
     steps:
+      # O contexto "runner" não pode ser usado no env do job, então a pasta
+      # de cache dos módulos do Hugo é definida aqui
+      - name: Set Hugo cache dir
+        run: echo "HUGO_CACHEDIR=${{ runner.temp }}/hugo_cache" >> "$GITHUB_ENV"
       - name: Checkout
         uses: actions/checkout@v7
       - name: Setup Go
