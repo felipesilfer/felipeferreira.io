@@ -12,7 +12,15 @@
 
   --hextra-max-navbar-width: 64rem; /* 1024px, como o --nav-width antigo */
   --hextra-max-footer-width: 64rem;
-  --hextra-max-content-width: 45rem; /* 720px, como o --main-width antigo */
+  /*
+   * Coluna de leitura única para o site inteiro (home, lista, artigos, páginas).
+   * 41rem = 656px: cabe entre a coluna reservada à esquerda e o sumário
+   * (2 × 16rem) mesmo numa tela de 1280px com barra de rolagem, então a
+   * largura do texto não muda de uma página para outra.
+   */
+  --content-column: 41rem;
+  /* Layouts do Hextra somam 3rem de padding de cada lado (hx:md:px-12) */
+  --hextra-max-content-width: calc(var(--content-column) + 6rem);
 
   --old-theme: rgb(255, 255, 255);
   --old-entry: rgb(255, 255, 255);
@@ -36,6 +44,12 @@
   --old-tertiary: rgb(65, 66, 68);
   --old-list-bg: rgb(29, 30, 32);
   --old-entry-border: rgb(51, 51, 51);
+}
+
+/* Reserva o espaço da barra de rolagem em toda página, para o conteúdo não
+   mudar de posição entre páginas curtas (sem barra) e longas (com barra). */
+html {
+  scrollbar-gutter: stable;
 }
 
 /* ---------- Cores base do Hextra ---------- */
@@ -172,7 +186,7 @@ html .hextra-footer {
 /* ---------- Home: últimos artigos ---------- */
 
 .recent-posts {
-  max-width: calc(var(--hextra-max-content-width) + 3rem);
+  max-width: calc(var(--content-column) + 3rem);
   margin: 0 auto;
   padding: 0 1.5rem 3rem;
 }
@@ -215,9 +229,10 @@ html:not(.dark) body:has(.post-list) .hextra-nav-container-blur {
 
 .post-list {
   width: 100%;
-  max-width: calc(var(--hextra-max-content-width) + 3rem);
+  max-width: calc(var(--content-column) + 3rem);
   margin: 0 auto;
-  padding: 2rem 1.5rem 3rem;
+  /* Topo alinhado ao título das páginas do Hextra (breadcrumb + espaço) */
+  padding: 3rem 1.5rem 3rem;
 }
 
 .post-list-header {
@@ -225,10 +240,16 @@ html:not(.dark) body:has(.post-list) .hextra-nav-container-blur {
 }
 
 .post-list-header h1 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: 700;
-  line-height: 1.2;
+  letter-spacing: -0.025em;
+  line-height: 2.5rem;
   color: var(--old-primary);
+}
+
+/* Título das páginas comuns (ex.: Currículo): o Hextra centraliza, os artigos não */
+#content > h1 {
+  text-align: start;
 }
 
 .post-list-intro {

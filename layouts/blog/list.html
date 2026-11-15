@@ -1,7 +1,8 @@
 {{- /* Lista de artigos em cartões, no estilo do site antigo. Baseado em layouts/blog/list.html do Hextra. */ -}}
 {{ define "main" }}
   <div class="hx:mx-auto hx:flex hextra-max-page-width">
-    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" true) }}
+    {{- /* Sem coluna reservada à esquerda: a lista não tem sumário, então fica centralizada como a home. */ -}}
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
     <main id="content" class="post-list">
       <header class="post-list-header">
         {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
