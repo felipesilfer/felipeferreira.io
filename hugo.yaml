@@ -69,3 +69,15 @@ params:
 
   editURL:
     enable: false
+
+  # Comentários nos artigos via Giscus (GitHub Discussions do repositório)
+  comments:
+    enable: true
+    type: giscus
+    giscus:
+      repo: felipesilfer/felipeferreira.io
+      repoId: R_kgDOVun0Lw
+      category: Announcements
+      categoryId: DIC_kwDOVun0L84DLKHA
+      mapping: pathname
+      lang: pt
