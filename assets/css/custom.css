@@ -444,3 +444,165 @@ html.dark #disqus_thread {
 html.dark #disqus_thread a {
   color: rgb(96, 165, 250);
 }
+
+/* ---------- Página 404 (layouts/404.html) ---------- */
+
+.not-found {
+  width: 100%;
+  max-width: calc(var(--content-column) + 3rem);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 1rem;
+}
+
+.nf-hero {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: #111;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.25);
+}
+
+.nf-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1400 / 463;
+  object-fit: cover;
+}
+
+/* Linhas de varredura de monitor CRT por cima da imagem */
+.nf-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0.18) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+/* "404" com aberração cromática vermelho/ciano, como na arte */
+.nf-glitch {
+  position: absolute;
+  right: 4%;
+  bottom: 6%;
+  z-index: 1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(2.5rem, 11vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: #f5f5f5;
+  text-shadow: 0 0 18px rgb(255 255 255 / 0.35);
+}
+
+.nf-glitch::before,
+.nf-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: screen;
+}
+
+.nf-glitch::before {
+  color: #ff2a55;
+  transform: translate(-3px, 1px);
+  animation: nf-glitch-a 3.2s infinite steps(1);
+}
+
+.nf-glitch::after {
+  color: #22e4ff;
+  transform: translate(3px, -1px);
+  animation: nf-glitch-b 2.7s infinite steps(1);
+}
+
+@keyframes nf-glitch-a {
+  0%, 88%, 100% { transform: translate(-3px, 1px); clip-path: inset(0 0 0 0); }
+  90% { transform: translate(-7px, 0); clip-path: inset(10% 0 55% 0); }
+  93% { transform: translate(5px, 2px); clip-path: inset(60% 0 8% 0); }
+  96% { transform: translate(-4px, -2px); clip-path: inset(30% 0 35% 0); }
+}
+
+@keyframes nf-glitch-b {
+  0%, 85%, 100% { transform: translate(3px, -1px); clip-path: inset(0 0 0 0); }
+  87% { transform: translate(7px, 1px); clip-path: inset(50% 0 20% 0); }
+  91% { transform: translate(-5px, -2px); clip-path: inset(5% 0 70% 0); }
+  95% { transform: translate(4px, 2px); clip-path: inset(70% 0 5% 0); }
+}
+
+.nf-terminal {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  background: #0d0d0d;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #d8d8d8;
+  overflow-wrap: anywhere;
+}
+
+.nf-prompt {
+  color: #22e4ff;
+}
+
+.nf-terminal p:nth-child(2) {
+  color: #ff5a78;
+}
+
+.nf-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  vertical-align: text-bottom;
+  background: currentColor;
+  animation: nf-blink 1s steps(1) infinite;
+}
+
+@keyframes nf-blink {
+  50% { opacity: 0; }
+}
+
+.nf-title {
+  margin-top: 2rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--old-primary);
+}
+
+.nf-text {
+  margin-top: 0.75rem;
+  color: var(--old-secondary);
+  line-height: 1.6;
+}
+
+.nf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.nf-actions .profile-button {
+  margin: 0;
+}
+
+.nf-recent {
+  max-width: none;
+  margin-top: 3rem;
+  padding: 0 0 3rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-glitch::before,
+  .nf-glitch::after,
+  .nf-cursor {
+    animation: none;
+  }
+}

@@ -1,0 +1,59 @@
+{{- /*
+  Página 404 customizada (substitui a do Hextra). Usa o layout base do tema,
+  então tem menu, busca, tema claro/escuro e rodapé. O GitHub Pages serve o
+  404.html gerado para qualquer endereço inexistente.
+  Estilos em assets/css/custom.css (seção "Página 404").
+*/ -}}
+{{ define "main" }}
+  {{- $blog := site.GetPage "/blog" -}}
+  {{- $recent := slice -}}
+  {{- with $blog }}{{ $recent = first 3 .RegularPages.ByDate.Reverse }}{{ end -}}
+
+  <div class="hx:mx-auto hx:flex hextra-max-page-width">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+    <main id="content" class="not-found">
+      <figure class="nf-hero">
+        <img src="{{ "images/404-cat.jpg" | relURL }}" alt="Gato de costas digitando a senha num terminal antigo" width="1400" height="463" />
+        <span class="nf-glitch" data-text="404" aria-hidden="true">404</span>
+      </figure>
+
+      <div class="nf-terminal" role="presentation">
+        <p><span class="nf-prompt">&gt;</span> GET <span class="nf-path">/página-perdida</span></p>
+        <p><span class="nf-prompt">&gt;</span> ERRO 404: ENTRADA NEGADA</p>
+        <p><span class="nf-prompt">&gt;</span> 0 TENTATIVA(S) RESTANTE(S) <span class="nf-cursor"></span></p>
+      </div>
+
+      <h1 class="nf-title">Essa página não existe… ou o gato hackeou ela 🐈‍⬛</h1>
+      <p class="nf-text">
+        O link pode estar quebrado ou o endereço mudou. Volte para o início, dê uma olhada no blog
+        ou use a busca lá em cima.
+      </p>
+
+      <div class="nf-actions">
+        <a class="profile-button" href="{{ "/" | relURL }}">← Voltar ao início</a>
+        {{- with $blog }}<a class="profile-button" href="{{ .RelPermalink }}">Ver o blog</a>{{ end }}
+      </div>
+
+      <script>
+        // O Hugo fixa o título da 404 em inglês ("404 Page not found")
+        document.title = {{ printf "Página não encontrada – %s" site.Title }};
+        // Mostra no "terminal" o endereço que a pessoa tentou abrir
+        try {
+          document.querySelector(".nf-path").textContent = decodeURI(location.pathname);
+        } catch (e) {}
+      </script>
+
+      {{- with $recent }}
+        <section class="recent-posts nf-recent" aria-labelledby="nf-recent-title">
+          <header class="recent-posts-header">
+            <h2 id="nf-recent-title">Talvez você procure</h2>
+            {{- with $blog }}<a href="{{ .RelPermalink }}">Ver todos →</a>{{ end }}
+          </header>
+          {{- range . }}
+            {{ partial "post-entry.html" (dict "page" . "heading" "h3") }}
+          {{- end }}
+        </section>
+      {{- end }}
+    </main>
+  </div>
+{{ end }}
