@@ -1,0 +1,22 @@
+{{- /*
+  Seletor de idioma "PT | EN" no menu de cima, depois da busca. Leva para a
+  tradução da página atual; se ela não existir, para a página inicial do idioma.
+  Ativado pelo item de menu "type: language-toggle" (hugo.yaml).
+  Uso: partial "language-toggle.html" <página>
+*/ -}}
+{{- $page := . -}}
+{{- if hugo.IsMultilingual }}
+  <div class="lang-toggle" role="group" aria-label="{{ T "changeLanguage" | default "Change language" }}">
+    {{- range $i, $home := site.Home.AllTranslations }}
+      {{- $lang := .Language.Lang -}}
+      {{- $href := $home.RelPermalink -}}
+      {{- range $page.AllTranslations }}{{ if eq .Language.Lang $lang }}{{ $href = .RelPermalink }}{{ end }}{{ end -}}
+      {{- if $i }}<span class="lang-toggle-sep" aria-hidden="true">|</span>{{ end -}}
+      {{- if eq $lang site.Language.Lang }}
+        <span class="lang-toggle-item lang-toggle-current" aria-current="true" title="{{ .Language.LanguageName }}">{{ upper $lang }}</span>
+      {{- else }}
+        <a class="lang-toggle-item" href="{{ $href }}" hreflang="{{ .Language.LanguageCode }}" lang="{{ .Language.LanguageCode }}" title="{{ .Language.LanguageName }}">{{ upper $lang }}</a>
+      {{- end }}
+    {{- end }}
+  </div>
+{{- end }}

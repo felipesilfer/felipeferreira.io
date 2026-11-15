@@ -40,6 +40,17 @@ languages:
           weight: 3
           params:
             type: search
+        - name: Idioma
+          weight: 4
+          params:
+            type: language-toggle
+            # O ícone só serve para o menu do celular (sidebar do Hextra) ignorar o item
+            icon: translate
+        - name: Tema
+          weight: 5
+          params:
+            type: theme-button
+            icon: sun
   en:
     languageName: English
     languageCode: en-us
@@ -57,6 +68,17 @@ languages:
           weight: 3
           params:
             type: search
+        - name: Language
+          weight: 4
+          params:
+            type: language-toggle
+            # O ícone só serve para o menu do celular (sidebar do Hextra) ignorar o item
+            icon: translate
+        - name: Theme
+          weight: 5
+          params:
+            type: theme-button
+            icon: sun
     # Só o que muda em inglês; o resto vem de params abaixo
     params:
       profile:
@@ -141,7 +163,9 @@ params:
 
   theme:
     default: system
-    displayToggle: true
+    # O seletor do Hextra (rodapé e menu do celular) fica desligado: o tema
+    # muda pelo botão Sol/Lua no menu de cima (layouts/_partials/theme-button.html)
+    displayToggle: false
 
   footer:
     displayCopyright: true

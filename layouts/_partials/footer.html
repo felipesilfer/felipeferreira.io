@@ -1,7 +1,8 @@
-{{- /* Cópia do footer.html do Hextra v0.12.3. Única mudança: "{year}" no texto de copyright vira o ano do build. */ -}}
+{{- /* Cópia do footer.html do Hextra v0.12.3. Mudanças: "{year}" no texto de copyright vira o ano do build, e o seletor de idioma saiu daqui (fica no menu de cima, _partials/language-toggle.html). */ -}}
 {{- $enableFooterSwitches := .Store.Get "enableFooterSwitches" | default false -}}
 {{- $displayThemeToggle := site.Params.theme.displayToggle | default true -}}
-{{- $footerSwitchesVisible := and $enableFooterSwitches (or hugo.IsMultilingual $displayThemeToggle) -}}
+{{- /* Sem o seletor de idioma aqui, a faixa só aparece se o seletor de tema do Hextra estiver ligado */ -}}
+{{- $footerSwitchesVisible := and $enableFooterSwitches $displayThemeToggle -}}
 {{- $copyrightSectionVisible := or (.Site.Params.footer.displayPoweredBy | default true) .Site.Params.footer.displayCopyright -}}
 
 {{- $copyright := replace ((T "copyright") | default "© 2024 Hextra.") "{year}" (string now.Year) -}}
@@ -11,10 +12,9 @@
 <footer class="hextra-footer hx:bg-gray-100 hx:pb-[env(safe-area-inset-bottom)] hx:dark:bg-neutral-900 hx:print:bg-transparent">
   {{- if $footerSwitchesVisible -}}
     <div class="hx:mx-auto hx:flex hx:gap-2 hx:py-2 hx:px-4 hextra-max-footer-width">
-      {{- partial "language-switch.html" (dict "context" .) -}}
       {{- with $displayThemeToggle }}{{ partial "theme-toggle.html" }}{{ end -}}
     </div>
-    {{- if or hugo.IsMultilingual $displayThemeToggle -}}
+    {{- if $displayThemeToggle -}}
       <hr class="hx:border-gray-200 hx:dark:border-neutral-800" />
     {{- end -}}
   {{- end -}}

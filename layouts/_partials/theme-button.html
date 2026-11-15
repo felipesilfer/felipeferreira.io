@@ -1,0 +1,31 @@
+{{- /*
+  Botão único de tema no menu de cima, depois do seletor de idioma.
+  Sem escolha salva, segue o sistema. No escuro mostra o Sol (clique: claro);
+  no claro mostra a Lua (clique: escuro). A escolha fica em localStorage
+  ("color-theme"), a mesma chave do Hextra, e é aplicada pelo setTheme() dele.
+  Ativado pelo item de menu "type: theme-button" (hugo.yaml).
+*/ -}}
+<button type="button" class="theme-button">
+  <span class="theme-button-sun">
+    {{- partial "utils/icon.html" (dict "name" "sun" "attributes" "height=20") -}}
+    <span class="hx:sr-only">{{ T "switchToLight" }}</span>
+  </span>
+  <span class="theme-button-moon">
+    {{- partial "utils/icon.html" (dict "name" "moon" "attributes" "height=20") -}}
+    <span class="hx:sr-only">{{ T "switchToDark" }}</span>
+  </span>
+</button>
+<script>
+  document.querySelectorAll(".theme-button").forEach((button) => {
+    const titles = { light: {{ T "switchToLight" }}, dark: {{ T "switchToDark" }} };
+    const next = () => (document.documentElement.classList.contains("dark") ? "light" : "dark");
+    const updateTitle = () => (button.title = titles[next()]);
+    updateTitle();
+    new MutationObserver(updateTitle).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    button.addEventListener("click", () => {
+      const theme = next();
+      setTheme(theme);
+      try { localStorage.setItem("color-theme", theme); } catch (e) {}
+    });
+  });
+</script>

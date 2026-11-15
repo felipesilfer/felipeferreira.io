@@ -26,3 +26,5 @@ notFoundText: "The link may be broken or the address may have changed. Go back h
 notFoundHome: "← Back to home"
 notFoundBlog: "Read the blog"
 notFoundSuggestions: "Maybe you're looking for"
+switchToLight: "Switch to light theme"
+switchToDark: "Switch to dark theme"

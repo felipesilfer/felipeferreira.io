@@ -343,6 +343,11 @@ html:not(.dark) body:has(.post-list) .hextra-nav-container-blur {
   transition: transform 0.1s;
 }
 
+/* No claro, o cartão usa a cor do profile-button para se destacar do fundo branco */
+html:not(.dark) .post-entry {
+  background: var(--old-tertiary);
+}
+
 .post-entry:active {
   transform: scale(0.96);
 }
@@ -614,4 +619,80 @@ html.dark #disqus_thread a {
   .nf-cursor {
     animation: none;
   }
+}
+
+/* ---------- Seletor de idioma "PT | EN" no menu (language-toggle.html) ---------- */
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.lang-toggle-item {
+  padding: 0.15rem 0.3rem;
+  border-radius: 0.25rem;
+  color: var(--old-secondary);
+  transition: color 0.15s;
+}
+
+a.lang-toggle-item:hover {
+  color: var(--old-primary);
+}
+
+.lang-toggle-current {
+  font-weight: 700;
+  color: var(--old-primary);
+  background: var(--old-tertiary);
+}
+
+.lang-toggle-sep {
+  color: var(--old-secondary);
+  opacity: 0.5;
+}
+
+/* ---------- Botão de tema Sol/Lua no menu (theme-button.html) ---------- */
+
+.theme-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border-radius: 0.375rem;
+  color: var(--old-secondary);
+  cursor: pointer;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.theme-button:hover {
+  color: var(--old-primary);
+  background: var(--old-tertiary);
+}
+
+/* No escuro aparece o Sol (vai para o claro); no claro, a Lua */
+.theme-button-sun,
+html.dark .theme-button-moon {
+  display: none;
+}
+
+html.dark .theme-button-sun {
+  display: inline-flex;
+}
+
+/* ---------- Campo de busca no tema claro ---------- */
+/* O fundo do Hextra (5% de preto) quase some no menu branco: fundo e contorno mais fortes.
+   O contorno é box-shadow para não mudar o tamanho do campo. */
+html:not(.dark) .hextra-search-input {
+  background-color: rgb(0 0 0 / 0.06);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.14);
+}
+
+html:not(.dark) .hextra-search-input:focus,
+html:not(.dark) .hextra-search-input:focus-visible {
+  background-color: #fff;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.3);
 }

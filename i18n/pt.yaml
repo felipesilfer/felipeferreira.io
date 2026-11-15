@@ -33,3 +33,5 @@ notFoundText: "O link pode estar quebrado ou o endereço mudou. Volte para o in�
 notFoundHome: "← Voltar ao início"
 notFoundBlog: "Ver o blog"
 notFoundSuggestions: "Talvez você procure"
+switchToLight: "Mudar para o tema claro"
+switchToDark: "Mudar para o tema escuro"
