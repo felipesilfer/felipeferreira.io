@@ -2,14 +2,14 @@
 title: "Criando um Chatbot com GPT-3"
 description: "Um passo a passo para implementar um chatbot com GPT-3 utilizando a OpenAI API."
 date: 2023-04-16T00:33:47-03:00
-images: ["/images/articles/creating-a-chatbot-gpt3/gpt-3-thumb.png"]
+images: ["/images/articles/creating-a-chatbot-gpt3/gpt-3-thumb.jpg"]
 tags: ["ia", "python", "openai", "chatbot", "fine-tuning"]
 authors:
   - name: Felipe Ferreira
     link: https://github.com/felipesilfer
 ---
 
-![](/images/articles/creating-a-chatbot-gpt3/gpt-3-thumb.png "OpenAI GPT-3")
+![Ilustração de um robô sobre um chip, com o texto GPT-3](/images/articles/creating-a-chatbot-gpt3/gpt-3-thumb.jpg "OpenAI GPT-3")
 
 ## Motivação
 Em 2022, a OpenAI lançou o ChatGPT, um chatbot baseado no GPT-3.5, versão aprimorada do modelo de linguagem GPT-3.
@@ -48,17 +48,17 @@ Observações:
 
 Vá até a [página de cadastro (Sign Up) da OpenAI](https://platform.openai.com/signup) e siga as instruções para criar uma conta.
 
-![](/images/articles/creating-a-chatbot-gpt3/signup-opneai.png)
+![Página de cadastro da OpenAI](/images/articles/creating-a-chatbot-gpt3/signup-openai.png)
 
 ## Passo 2: Criar uma API Key
 
 Depois de entrar na sua conta OpenAI, clique em **Personal**, no canto superior direito, e em seguida em **View API keys**.
 
-![](/images/articles/creating-a-chatbot-gpt3/create-api-key.png)
+![Menu Personal da OpenAI com a opção View API keys](/images/articles/creating-a-chatbot-gpt3/create-api-key.png)
 
 Na página **API Keys**, clique no botão **+ Create new secret key** para gerar a chave que vamos usar no código.
 
-![](/images/articles/creating-a-chatbot-gpt3/create-new-secret-key.png)
+![Página API Keys da OpenAI com o botão Create new secret key](/images/articles/creating-a-chatbot-gpt3/create-new-secret-key.png)
 
 Salve a chave gerada num arquivo YAML chamado ``openai-apikey.yml``, para o código poder lê-la. O arquivo segue este formato:
 
@@ -220,7 +220,6 @@ df.head(5)
 |3|{'tag': 'nome', 'patterns': ['nome', 'seu nome...|
 |4|{'tag': 'horario', 'patterns': ['horário da fa...|
 
-</br>
 
 O código de reformatação é o mesmo de antes, só sem a tradução pela função ``translateGPT()``:
 
@@ -251,7 +250,6 @@ df_output.head(5)
 |3|Como você está? -&gt;|Olá!.\n|
 |4|Como você está? -&gt;|Bom te ver de novo!.\n|
 
-</br>
 
 Depois de transformado, o dataset deve ser salvo em um arquivo JSONL, como pede a documentação:
 
@@ -317,7 +315,6 @@ df.head(10)
 |8|Tem alguém aí? -&gt;|Olá, como posso ajudar?.\n|
 |9|Olá -&gt;|Olá!.\n|
 
-</br>
 
 
 Rodando o comando de novo, vemos a saída de um dataframe formatado corretamente:

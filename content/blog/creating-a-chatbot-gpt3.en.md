@@ -2,14 +2,14 @@
 title: "Creating a Chatbot with GPT-3"
 description: "A step-by-step guide to building a chatbot with GPT-3 using the OpenAI API."
 date: 2023-04-16T00:33:47-03:00
-images: ["/images/articles/creating-a-chatbot-gpt3/gpt-3-thumb.png"]
+images: ["/images/articles/creating-a-chatbot-gpt3/gpt-3-thumb.jpg"]
 tags: ["ai", "python", "openai", "chatbot", "fine-tuning"]
 authors:
   - name: Felipe Ferreira
     link: https://github.com/felipesilfer
 ---
 
-![](/images/articles/creating-a-chatbot-gpt3/gpt-3-thumb.png "OpenAI GPT-3")
+![Illustration of a robot on a chip, with the text GPT-3](/images/articles/creating-a-chatbot-gpt3/gpt-3-thumb.jpg "OpenAI GPT-3")
 
 ## Motivation
 In 2022, OpenAI released ChatGPT, a chatbot based on GPT-3.5, an improved version of the GPT-3 language model.
@@ -49,17 +49,17 @@ Notes:
 
 Go to the [OpenAI Sign Up page](https://platform.openai.com/signup) and follow the instructions to create an account.
 
-![](/images/articles/creating-a-chatbot-gpt3/signup-opneai.png)
+![OpenAI sign up page](/images/articles/creating-a-chatbot-gpt3/signup-openai.png)
 
 ## Step 2: Create an API key
 
 After logging into your OpenAI account, click **Personal** in the top right corner, then **View API keys**.
 
-![](/images/articles/creating-a-chatbot-gpt3/create-api-key.png)
+![OpenAI Personal menu with the View API keys option](/images/articles/creating-a-chatbot-gpt3/create-api-key.png)
 
 On the **API Keys** page, click **+ Create new secret key** to generate the key we will use in the code.
 
-![](/images/articles/creating-a-chatbot-gpt3/create-new-secret-key.png)
+![OpenAI API Keys page with the Create new secret key button](/images/articles/creating-a-chatbot-gpt3/create-new-secret-key.png)
 
 Save the generated key in a YAML file named ``openai-apikey.yml`` so the code can read it. The file looks like this:
 
@@ -221,7 +221,6 @@ df.head(5)
 |3|{'tag': 'nome', 'patterns': ['nome', 'seu nome...|
 |4|{'tag': 'horario', 'patterns': ['horário da fa...|
 
-</br>
 
 The reformatting code is the same as before, just without the translation through the ``translateGPT()`` function:
 
@@ -252,7 +251,6 @@ df_output.head(5)
 |3|Como você está? -&gt;|Olá!.\n|
 |4|Como você está? -&gt;|Bom te ver de novo!.\n|
 
-</br>
 
 Once transformed, the dataset must be saved to a JSONL file, as the documentation requires:
 
@@ -318,7 +316,6 @@ df.head(10)
 |8|Tem alguém aí? -&gt;|Olá, como posso ajudar?.\n|
 |9|Olá -&gt;|Olá!.\n|
 
-</br>
 
 
 Running the command again, we see the output for a correctly formatted dataframe:

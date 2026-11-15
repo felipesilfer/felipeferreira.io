@@ -30,36 +30,12 @@
   --old-list-bg: rgb(245, 245, 245);
   --old-entry-border: rgb(195, 195, 195);
   --old-radius: 8px;
-}
 
-.dark {
-  --primary-hue: 0deg;
-  --primary-saturation: 0%;
-  --primary-lightness: 75%;
-
-  --old-theme: rgb(29, 30, 32);
-  --old-entry: rgb(46, 46, 51);
-  --old-primary: rgb(218, 218, 219);
-  --old-secondary: rgb(155, 156, 157);
-  --old-tertiary: rgb(65, 66, 68);
-  --old-list-bg: rgb(29, 30, 32);
-  --old-entry-border: rgb(51, 51, 51);
-}
-
-/* Reserva o espaço da barra de rolagem em toda página, para o conteúdo não
-   mudar de posição entre páginas curtas (sem barra) e longas (com barra). */
-html {
-  scrollbar-gutter: stable;
-}
-
-/* ---------- Cores base do Hextra ---------- */
-
-/*
- * O Hextra pinta o fundo escuro com --hx-color-dark (#111) no body, navbar,
- * barra lateral, busca e sumário. Trocá-la aqui aplica o grafite antigo em
- * todos esses lugares de uma vez.
- */
-:root {
+  /*
+   * O Hextra pinta o fundo escuro com --hx-color-dark (#111) no body, navbar,
+   * barra lateral, busca e sumário. Trocá-la aqui aplica o grafite antigo em
+   * todos esses lugares de uma vez.
+   */
   --hx-color-dark: rgb(29, 30, 32);
 
   /* Cinzas gray/slate do Tailwind puxam para o azul; o site antigo era neutro. */
@@ -79,22 +55,49 @@ html {
 }
 
 .dark {
+  /* Matiz e saturação vêm do :root; no escuro só muda a luminosidade */
+  --primary-lightness: 75%;
+
+  --old-theme: rgb(29, 30, 32);
+  --old-entry: rgb(46, 46, 51);
+  --old-primary: rgb(218, 218, 219);
+  --old-secondary: rgb(155, 156, 157);
+  --old-tertiary: rgb(65, 66, 68);
+  --old-list-bg: rgb(29, 30, 32);
+  --old-entry-border: rgb(51, 51, 51);
+
   /*
-   * neutral-900 é usado no modo escuro para menus suspensos (busca, tema) e
+   * neutral-900 é usado no modo escuro para menus suspensos (busca) e
    * rodapé; no Hextra é mais escuro que a página. Vira a cor de superfície
    * elevada do tema antigo (--entry).
    */
   --hx-color-neutral-900: rgb(46, 46, 51);
 }
 
+/* Reserva o espaço da barra de rolagem em toda página, para o conteúdo não
+   mudar de posição entre páginas curtas (sem barra) e longas (com barra). */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* ---------- Ajustes de cor do Hextra ---------- */
+
 /* Sombra do bloco fixo "Voltar ao topo" no sumário: era #111 fixo */
 html.dark [class*="shadow-[0_-12px_16px_#111]"] {
   --tw-shadow-color: var(--hx-color-dark);
 }
 
-/* Rodapé com a mesma cor da página, como no tema antigo */
+/* Rodapé com a mesma cor da página, como no tema antigo, e uma linha no topo
+   no mesmo estilo da do menu (.hextra-nav-container-blur). A linha do claro é
+   mais forte que os 6% do menu para aparecer também na lista do Blog, onde o
+   fundo é cinza; no escuro, branco a 10% como no menu. */
 html .hextra-footer {
   background-color: var(--old-theme);
+  border-top: 1px solid rgb(0 0 0 / 0.12);
+}
+
+html.dark .hextra-footer {
+  border-top-color: rgb(255 255 255 / 0.1);
 }
 
 /* ---------- Página inicial: modo perfil ---------- */
@@ -375,6 +378,12 @@ html:not(.dark) .post-entry {
   color: var(--old-secondary);
 }
 
+/* O cartão inteiro é clicável */
+.post-entry-link {
+  position: absolute;
+  inset: 0;
+}
+
 /* Linha divisória entre o resumo e as tags do cartão */
 .post-entry .tag-links {
   margin-top: 14px;
@@ -436,11 +445,7 @@ html:not(.dark) .post-entry {
   color: var(--old-secondary);
 }
 
-/* O cartão inteiro é clicável */
-.post-entry-link {
-  position: absolute;
-  inset: 0;
-}
+/* ---------- Comentários (Disqus) ---------- */
 
 /* Disqus lê as cores calculadas do contêiner para montar o tema (claro/escuro)
    e não entende oklch(), formato usado pelo Hextra; por isso cores em RGB aqui. */
@@ -695,16 +700,4 @@ html:not(.dark) .hextra-search-input:focus,
 html:not(.dark) .hextra-search-input:focus-visible {
   background-color: #fff;
   box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.3);
-}
-
-/* ---------- Linha no topo do rodapé ---------- */
-/* Mesmo estilo da linha do menu de cima (.hextra-nav-container-blur do Hextra).
-   No claro o rodapé é cinza, então a linha precisa ser mais forte que os 6% do
-   menu para aparecer; no escuro, branco a 10% como no menu. */
-.hextra-footer {
-  border-top: 1px solid rgb(0 0 0 / 0.12);
-}
-
-html.dark .hextra-footer {
-  border-top-color: rgb(255 255 255 / 0.1);
 }
