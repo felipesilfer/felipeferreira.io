@@ -9,6 +9,8 @@ authors:
     link: https://github.com/felipesilfer
 ---
 
+![Felipe ao lado do letreiro do Serpro](/images/articles/minha-trajetoria-ate-o-serpro/thumb.jpg "Finalmente no Serpro!")
+
 Algumas admirações nascem de um jeito bem despretensioso. A minha pelo SERPRO começou numa cadeira de auditório, nos primeiros períodos do Bacharelado em Sistemas de Informação no Instituto Federal Fluminense, em Campos dos Goytacazes. Levei mais de uma década para transformar essa admiração em crachá.
 
 Este texto conta essa história: as tentativas, os anos parado, o recomeço, a espera, o plano B e a surpresa no fim. Também tento deixar pelo caminho o que eu gostaria que alguém tivesse me dito antes.
