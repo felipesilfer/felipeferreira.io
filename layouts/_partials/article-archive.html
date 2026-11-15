@@ -1,0 +1,30 @@
+{{- /*
+  Arquivo de artigos agrupados por mês/ano, na coluna esquerda da página do
+  artigo. Visível só em telas largas (xl, como o placeholder que substitui).
+  Quantidade em params.articleArchive.limit no hugo.yaml (0 = todos).
+  Uso: partial "article-archive.html" .
+*/ -}}
+{{- $current := . -}}
+{{- $limit := site.Params.articleArchive.limit | default 0 -}}
+{{- with site.GetPage "/articles" }}
+  {{- $all := .RegularPages.ByDate.Reverse -}}
+  {{- $shown := cond (gt $limit 0) (first $limit $all) $all -}}
+  <aside class="article-archive" aria-labelledby="article-archive-title">
+    <nav class="article-archive-inner">
+      <h2 id="article-archive-title" class="article-archive-title">Arquivo</h2>
+      {{- range $shown.GroupByDate "2006-01" "desc" }}
+        <h3 class="article-archive-month">{{ (index .Pages 0).Date | time.Format "January 2006" }}</h3>
+        <ul>
+          {{- range .Pages.ByDate.Reverse }}
+            <li>
+              <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ .Title }}</a>
+            </li>
+          {{- end }}
+        </ul>
+      {{- end }}
+      {{- if gt (len $all) (len $shown) }}
+        <a class="article-archive-more" href="{{ .RelPermalink }}">Ver todos →</a>
+      {{- end }}
+    </nav>
+  </aside>
+{{- end }}

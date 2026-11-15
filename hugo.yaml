@@ -63,6 +63,11 @@ params:
         title: LinkedIn
         url: https://www.linkedin.com/in/felipesilfer/
 
+  # Barra "Arquivo" à esquerda nos artigos (layouts/_partials/article-archive.html)
+  articleArchive:
+    # Quantos artigos mostrar, dos mais recentes (0 = todos)
+    limit: 10
+
   navbar:
     displayTitle: true
     displayLogo: false
