@@ -21,7 +21,7 @@
     if (window.DISQUS) DISQUS.reset({ reload: true, config: disqus_config });
   }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 </script>
-<noscript>Ative o JavaScript para ver os <a href="https://disqus.com/?ref_noscript">comentários do Disqus</a>.</noscript>
+<noscript>{{ T "disqusNoscript" }}</noscript>
 {{- else -}}
   {{ warnf "disqus: params.comments.disqus.shortname não configurado" }}
 {{- end -}}

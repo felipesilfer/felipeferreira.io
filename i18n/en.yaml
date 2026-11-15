@@ -1,0 +1,28 @@
+# Ajustes sobre as traduções em inglês do Hextra e textos dos templates do site.
+copyright: "Made by [**felipesilfer**](https://github.com/felipesilfer), Brazil {year}"
+
+# ---- Textos dos templates do site (layouts/) ----
+recentPosts: "Latest posts"
+viewAll: "View all →"
+archive: "Archive"
+profilePhoto: "Profile photo"
+notClickButton: "🎵 Don't click! 🎧😝"
+notClickTitle: "🎶A random song...🎧"
+tagPageCount:
+  one: "{{ .Count }} page with this tag."
+  other: "{{ .Count }} pages with this tag."
+viewAllTags: "View all tags →"
+tagsIntro: "Topics of the posts and pages on this site."
+disqusNoscript: "Enable JavaScript to see the Disqus comments."
+
+# Página 404
+notFoundPageTitle: "Page not found"
+notFoundImageAlt: "Cat seen from behind typing a password into an old terminal"
+notFoundTerminalError: "ERROR 404: ENTRY DENIED"
+notFoundTerminalAttempts: "0 ATTEMPT(S) LEFT"
+notFoundTerminalPath: "/lost-page"
+notFoundTitle: "This page doesn't exist… or the cat hacked it 🐈‍⬛"
+notFoundText: "The link may be broken or the address may have changed. Go back home, take a look at the blog or use the search at the top."
+notFoundHome: "← Back to home"
+notFoundBlog: "Read the blog"
+notFoundSuggestions: "Maybe you're looking for"

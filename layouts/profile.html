@@ -16,7 +16,7 @@
         <section class="profile">
           <div class="profile-inner">
             {{- with .image }}
-              <img src="{{ . | relURL }}" alt="{{ $.Site.Params.profile.imageTitle | default "Foto de perfil" }}" width="150" height="150" />
+              <img src="{{ . | relURL }}" alt="{{ $.Site.Params.profile.imageTitle | default (T "profilePhoto") }}" width="150" height="150" />
             {{- end }}
             <h1>{{ .title | default site.Title | markdownify }}</h1>
             {{- with .description }}
@@ -35,10 +35,14 @@
               <div class="profile-buttons">
                 {{- range . }}
                   {{- /* "urls" (lista): cada clique leva a um link sorteado; sem JS, vale o primeiro */ -}}
+                  {{- /* Com "i18n: chave", nome e dica vêm de i18n/ (chaveButton, chaveTitle) */ -}}
+                  {{- $name := .name -}}
+                  {{- $title := .title -}}
+                  {{- with .i18n }}{{ $name = T (printf "%sButton" .) }}{{ $title = T (printf "%sTitle" .) }}{{ end -}}
                   {{- if .urls }}
-                    <a class="profile-button" href="{{ index .urls 0 }}" data-links="{{ .urls | jsonify }}"{{ with .title }} title="{{ . }}"{{ end }} target="_blank" rel="noopener">{{ .name }}</a>
+                    <a class="profile-button" href="{{ index .urls 0 }}" data-links="{{ .urls | jsonify }}"{{ with $title }} title="{{ . }}"{{ end }} target="_blank" rel="noopener">{{ $name }}</a>
                   {{- else }}
-                    <a class="profile-button" href="{{ .url }}"{{ with .title }} title="{{ . }}"{{ end }} target="_blank" rel="noopener">{{ .name }}</a>
+                    <a class="profile-button" href="{{ .url }}"{{ with $title }} title="{{ . }}"{{ end }} target="_blank" rel="noopener">{{ $name }}</a>
                   {{- end }}
                 {{- end }}
               </div>
@@ -58,8 +62,8 @@
       {{- with $recent }}
         <section class="recent-posts" aria-labelledby="recent-posts-title">
           <header class="recent-posts-header">
-            <h2 id="recent-posts-title">Últimos artigos</h2>
-            <a href="{{ $articles.RelPermalink }}">Ver todos →</a>
+            <h2 id="recent-posts-title">{{ T "recentPosts" }}</h2>
+            <a href="{{ $articles.RelPermalink }}">{{ T "viewAll" }}</a>
           </header>
           {{- range . }}
             {{ partial "post-entry.html" (dict "page" . "heading" "h3") }}

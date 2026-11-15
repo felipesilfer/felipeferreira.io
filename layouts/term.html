@@ -10,8 +10,8 @@
       <header class="post-list-header">
         <h1>#{{ .Data.Term }}</h1>
         <div class="post-list-intro">
-          {{ len $pages }} {{ cond (eq (len $pages) 1) "página" "páginas" }} com esta tag.
-          <a href="{{ .Parent.RelPermalink }}">Ver todas as tags →</a>
+          {{ T "tagPageCount" (len $pages) }}
+          <a href="{{ .Parent.RelPermalink }}">{{ T "viewAllTags" }}</a>
         </div>
       </header>
       {{- range $pages }}

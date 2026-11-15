@@ -1,0 +1,13 @@
+{{- /*
+  Inserido no fim do <head> pelo Hextra. Liga as versões da página em cada
+  idioma (hreflang), para os buscadores mostrarem a versão certa. A versão em
+  português (idioma padrão) também vale como x-default.
+*/ -}}
+{{- if .IsTranslated }}
+  {{- range .AllTranslations }}
+    <link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}" />
+  {{- end }}
+  {{- range where .AllTranslations "Lang" "pt" }}
+    <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+  {{- end }}
+{{- end }}

@@ -1,7 +1,8 @@
 # Hugo configuration file
 baseURL: https://felipeferreira.io/
-languageCode: pt-br
 defaultContentLanguage: pt
+# Português fica na raiz (/), inglês em /en/
+defaultContentLanguageInSubdir: false
 title: Felipe Ferreira
 enableEmoji: true
 
@@ -20,18 +21,52 @@ markup:
   highlight:
     noClasses: false
 
-menu:
-  main:
-    - name: Blog
-      pageRef: /blog
-      weight: 1
-    - name: Currículo
-      pageRef: /curriculo
-      weight: 2
-    - name: Buscar
-      weight: 3
-      params:
-        type: search
+# Idiomas do site. O conteúdo em inglês fica em arquivos .en.md ao lado dos
+# originais; textos dos templates ficam em i18n/pt.yaml e i18n/en.yaml.
+languages:
+  pt:
+    languageName: Português
+    languageCode: pt-br
+    weight: 1
+    menu:
+      main:
+        - name: Blog
+          pageRef: /blog
+          weight: 1
+        - name: Currículo
+          pageRef: /curriculo
+          weight: 2
+        - name: Buscar
+          weight: 3
+          params:
+            type: search
+  en:
+    languageName: English
+    languageCode: en-us
+    weight: 2
+    menu:
+      main:
+        - name: Blog
+          pageRef: /blog
+          weight: 1
+        - name: Resume
+          # O navbar do Hextra usa o pageRef como URL, então vai o slug em inglês
+          pageRef: /resume
+          weight: 2
+        - name: Search
+          weight: 3
+          params:
+            type: search
+    # Só o que muda em inglês; o resto vem de params abaixo
+    params:
+      profile:
+        title: Hi, I'm Felipe 👋
+        description: |
+          👨🏻‍💻Working at [SERPRO](https://www.serpro.gov.br/), 👓Geek, 🎮Gamer, interested in 🐍Python, ⚙️DevOps, 📊Data Engineering and 🤖AI.
+        imageTitle: Photo of Felipe Ferreira
+      comments:
+        disqus:
+          lang: en
 
 params:
   # Imagem de prévia (Open Graph) para links compartilhados em WhatsApp, Discord etc.
@@ -49,8 +84,8 @@ params:
     # Quantos artigos recentes mostrar abaixo do perfil (0 esconde a seção)
     recentPosts: 3
     buttons:
-      - name: 🎵 Não clique! 🎧😝
-        title: 🎶Uma música aleatória...🎧
+      # Texto do botão e da dica: chaves notClickButton/notClickTitle em i18n/
+      - i18n: notClick
         # Cada clique sorteia um destino desta lista
         urls:
           - https://www.youtube.com/watch?v=dQw4w9WgXcQ

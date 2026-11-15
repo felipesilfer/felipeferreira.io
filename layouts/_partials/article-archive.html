@@ -11,7 +11,7 @@
   {{- $shown := cond (gt $limit 0) (first $limit $all) $all -}}
   <aside class="article-archive" aria-labelledby="article-archive-title">
     <nav class="article-archive-inner">
-      <h2 id="article-archive-title" class="article-archive-title">Arquivo</h2>
+      <h2 id="article-archive-title" class="article-archive-title">{{ T "archive" }}</h2>
       {{- range $shown.GroupByDate "2006-01" "desc" }}
         <h3 class="article-archive-month">{{ (index .Pages 0).Date | time.Format "January 2006" }}</h3>
         <ul>
@@ -23,7 +23,7 @@
         </ul>
       {{- end }}
       {{- if gt (len $all) (len $shown) }}
-        <a class="article-archive-more" href="{{ .RelPermalink }}">Ver todos →</a>
+        <a class="article-archive-more" href="{{ .RelPermalink }}">{{ T "viewAll" }}</a>
       {{- end }}
     </nav>
   </aside>

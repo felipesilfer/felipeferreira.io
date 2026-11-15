@@ -9,7 +9,7 @@
     <main id="content" class="post-list">
       <header class="post-list-header">
         <h1>{{ .Title }}</h1>
-        <div class="post-list-intro">{{ with .Content }}{{ . }}{{ else }}Assuntos dos artigos e páginas do site.{{ end }}</div>
+        <div class="post-list-intro">{{ with .Content }}{{ . }}{{ else }}{{ T "tagsIntro" }}{{ end }}</div>
       </header>
       <ul class="tag-cloud">
         {{- range .Data.Terms.ByCount }}
