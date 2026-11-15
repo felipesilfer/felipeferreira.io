@@ -40,8 +40,7 @@ params:
   profile:
     title: Olá, eu sou o Felipe 👋
     description: |
-      Trabalho na [UFF](https://www.uff.br/) 🧑🏽‍💻
-      Estudo de Ciência de Dados 🎲
+      Trabalho no [SERPRO](https://www.serpro.gov.br/)
     image: /images/profile.png
     imageTitle: Foto de Felipe Ferreira
     buttons:
