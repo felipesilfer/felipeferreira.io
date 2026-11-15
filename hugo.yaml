@@ -110,14 +110,10 @@ params:
   editURL:
     enable: false
 
-  # Comentários nos artigos via Giscus (GitHub Discussions do repositório)
+  # Comentários nos artigos via Disqus (layouts/_partials/components/disqus.html)
   comments:
     enable: true
-    type: giscus
-    giscus:
-      repo: felipesilfer/felipeferreira.io
-      repoId: R_kgDOVun0Lw
-      category: Announcements
-      categoryId: DIC_kwDOVun0L84DLKHA
-      mapping: pathname
-      lang: pt
+    type: disqus
+    disqus:
+      shortname: felipeferreira   # shortname do site no Disqus
+      lang: pt_BR
