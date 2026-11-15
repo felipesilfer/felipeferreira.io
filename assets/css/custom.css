@@ -38,17 +38,48 @@
   --old-entry-border: rgb(51, 51, 51);
 }
 
-/* Fundo grafite do modo escuro antigo, no lugar do #111 do Hextra */
-html.dark body,
-html.dark .hextra-footer {
-  background-color: var(--old-theme);
-}
-html.dark .hextra-nav-container-blur {
-  background-color: rgb(29 30 32 / 0.85) !important;
+/* ---------- Cores base do Hextra ---------- */
+
+/*
+ * O Hextra pinta o fundo escuro com --hx-color-dark (#111) no body, navbar,
+ * barra lateral, busca e sumário. Trocá-la aqui aplica o grafite antigo em
+ * todos esses lugares de uma vez.
+ */
+:root {
+  --hx-color-dark: rgb(29, 30, 32);
+
+  /* Cinzas gray/slate do Tailwind puxam para o azul; o site antigo era neutro. */
+  --hx-color-gray-50: oklch(98.5% 0 0);
+  --hx-color-gray-100: oklch(97% 0 0);
+  --hx-color-gray-200: oklch(92.2% 0 0);
+  --hx-color-gray-300: oklch(87% 0 0);
+  --hx-color-gray-400: oklch(70.8% 0 0);
+  --hx-color-gray-500: oklch(55.6% 0 0);
+  --hx-color-gray-600: oklch(43.9% 0 0);
+  --hx-color-gray-700: oklch(37.1% 0 0);
+  --hx-color-gray-800: oklch(26.9% 0 0);
+  --hx-color-gray-900: oklch(20.5% 0 0);
+  --hx-color-slate-50: oklch(98.5% 0 0);
+  --hx-color-slate-100: oklch(97% 0 0);
+  --hx-color-slate-900: oklch(20.5% 0 0);
 }
 
-/* Rodapé claro e discreto, como o antigo */
-html:not(.dark) .hextra-footer {
+.dark {
+  /*
+   * neutral-900 é usado no modo escuro para menus suspensos (busca, tema) e
+   * rodapé; no Hextra é mais escuro que a página. Vira a cor de superfície
+   * elevada do tema antigo (--entry).
+   */
+  --hx-color-neutral-900: rgb(46, 46, 51);
+}
+
+/* Sombra do bloco fixo "Voltar ao topo" no sumário: era #111 fixo */
+html.dark [class*="shadow-[0_-12px_16px_#111]"] {
+  --tw-shadow-color: var(--hx-color-dark);
+}
+
+/* Rodapé com a mesma cor da página, como no tema antigo */
+html .hextra-footer {
   background-color: var(--old-theme);
 }
 
@@ -136,7 +167,7 @@ html:not(.dark) body:has(.post-list) .hextra-footer {
   background-color: var(--old-list-bg);
 }
 html:not(.dark) body:has(.post-list) .hextra-nav-container-blur {
-  background-color: rgb(245 245 245 / 0.85) !important;
+  background-color: rgb(245 245 245 / 0.85);
 }
 
 .post-list {
