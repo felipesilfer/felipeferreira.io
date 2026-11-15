@@ -1,6 +1,7 @@
 ---
 title: Currículo
 description: "Currículo de Felipe Ferreira: experiência profissional e formação acadêmica."
+images: ["/images/og-curriculo.jpg"]
 tags: ["carreira", "serpro", "servico-publico", "ti"]
 comments: false
 ---
