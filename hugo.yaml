@@ -68,6 +68,10 @@ params:
     # Quantos artigos mostrar, dos mais recentes (0 = todos)
     limit: 10
 
+  # Mostra as tags da página embaixo do sumário ("Nesta página")
+  toc:
+    displayTags: true
+
   navbar:
     displayTitle: true
     displayLogo: false

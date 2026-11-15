@@ -369,6 +369,59 @@ html:not(.dark) body:has(.post-list) .hextra-nav-container-blur {
   color: var(--old-secondary);
 }
 
+/* ---------- Tags ---------- */
+
+/* Links "#tag" nos cartões: acima do link que cobre o cartão */
+.tag-links {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 13px;
+}
+
+.tag-link,
+.post-list-intro a {
+  color: var(--old-secondary);
+}
+
+.tag-link:hover,
+.post-list-intro a:hover {
+  color: var(--old-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Página /tags/: tags em "pílulas" com a contagem */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--old-entry-border);
+  border-radius: var(--old-radius);
+  background: var(--old-entry);
+  color: var(--old-primary);
+  font-weight: 500;
+}
+
+.tag-chip:hover {
+  border-color: var(--old-secondary);
+}
+
+.tag-chip-count {
+  font-size: 0.8125rem;
+  color: var(--old-secondary);
+}
+
 /* O cartão inteiro é clicável */
 .post-entry-link {
   position: absolute;

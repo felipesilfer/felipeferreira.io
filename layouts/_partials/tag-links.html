@@ -1,0 +1,14 @@
+{{- /*
+  Links "#tag" de uma página, no estilo do site. Usado nos cartões de artigo.
+  Uso: partial "tag-links.html" <página>
+*/ -}}
+{{- $page := . -}}
+{{- with .Params.tags }}
+  <ul class="tag-links" aria-label="Tags">
+    {{- range . }}
+      {{- with $page.Site.GetPage (printf "/tags/%s" (urlize .)) }}
+        <li><a class="tag-link" href="{{ .RelPermalink }}">#{{ .Data.Term }}</a></li>
+      {{- end }}
+    {{- end }}
+  </ul>
+{{- end }}

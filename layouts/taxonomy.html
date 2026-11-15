@@ -1,0 +1,25 @@
+{{- /*
+  Lista de tags (/tags/): todas as tags com a quantidade de páginas, das mais
+  usadas para as menos, na mesma coluna da lista de artigos. Substitui
+  layouts/taxonomy.html do Hextra.
+*/ -}}
+{{ define "main" }}
+  <div class="hx:mx-auto hx:flex hextra-max-page-width">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+    <main id="content" class="post-list">
+      <header class="post-list-header">
+        <h1>{{ .Title }}</h1>
+        <div class="post-list-intro">{{ with .Content }}{{ . }}{{ else }}Assuntos dos artigos e páginas do site.{{ end }}</div>
+      </header>
+      <ul class="tag-cloud">
+        {{- range .Data.Terms.ByCount }}
+          <li>
+            <a class="tag-chip" href="{{ .Page.RelPermalink }}">
+              #{{ .Page.Data.Term }} <span class="tag-chip-count">{{ .Count }}</span>
+            </a>
+          </li>
+        {{- end }}
+      </ul>
+    </main>
+  </div>
+{{ end }}

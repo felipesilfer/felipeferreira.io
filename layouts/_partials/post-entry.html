@@ -14,6 +14,8 @@
     {{ partial "utils/format-date" .Date }}
     {{- with .ReadingTime }} · {{ . }} min{{ end }}
   </footer>
+  {{- /* Fica acima do link que cobre o cartão (z-index no CSS) */ -}}
+  {{ partial "tag-links.html" . }}
   <a class="post-entry-link" href="{{ .RelPermalink }}" aria-label="{{ .Title }}"></a>
 </article>
 {{- end }}

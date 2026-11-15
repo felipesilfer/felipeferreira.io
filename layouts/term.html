@@ -1,0 +1,22 @@
+{{- /*
+  Página de uma tag (/tags/<tag>/): as páginas com a tag em cartões, na mesma
+  coluna da lista de artigos. Substitui layouts/term.html do Hextra.
+*/ -}}
+{{ define "main" }}
+  <div class="hx:mx-auto hx:flex hextra-max-page-width">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+    <main id="content" class="post-list">
+      {{- $pages := .Pages.ByDate.Reverse -}}
+      <header class="post-list-header">
+        <h1>#{{ .Data.Term }}</h1>
+        <div class="post-list-intro">
+          {{ len $pages }} {{ cond (eq (len $pages) 1) "página" "páginas" }} com esta tag.
+          <a href="{{ .Parent.RelPermalink }}">Ver todas as tags →</a>
+        </div>
+      </header>
+      {{- range $pages }}
+        {{ partial "post-entry.html" (dict "page" . "heading" "h2") }}
+      {{- end }}
+    </main>
+  </div>
+{{ end }}
