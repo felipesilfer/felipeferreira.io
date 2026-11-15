@@ -25,8 +25,11 @@ menu:
     - name: Artigos
       pageRef: /articles
       weight: 1
-    - name: Buscar
+    - name: Currículo
+      pageRef: /curriculo
       weight: 2
+    - name: Buscar
+      weight: 3
       params:
         type: search
 
