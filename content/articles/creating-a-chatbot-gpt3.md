@@ -2,7 +2,7 @@
 title: "Criando um Chatbot com GPT-3"
 description: "Um passo a passo para implementar um chatbot com GPT-3 utilizando a OpenAI API."
 date: 2023-04-16T00:33:47-03:00
-image: "/images/articles/creating-a-chatbot-gpt3/gpt-3-thumb.png"
+images: ["/images/articles/creating-a-chatbot-gpt3/gpt-3-thumb.png"]
 authors:
   - name: Felipe Ferreira
     link: https://github.com/felipesilfer
