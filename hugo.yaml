@@ -29,11 +29,6 @@ menu:
       weight: 2
       params:
         type: search
-    - name: GitHub
-      weight: 3
-      url: "https://github.com/felipesilfer"
-      params:
-        icon: github
 
 params:
   # Página inicial em "modo perfil", como no site antigo (layouts/profile.html)
