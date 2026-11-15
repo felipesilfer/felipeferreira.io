@@ -2,7 +2,7 @@
 title: "Do seminário de criptografia ao crachá: minha trajetória até o SERPRO"
 description: "Uma palestra na faculdade, 14 anos na UFF, cadastro reserva, um plano B no TJ RJ e uma convocação que eu já não esperava: como cheguei ao SERPRO."
 date: 2026-11-15T02:50:00-03:00
-images: ["/images/articles/minha-trajetoria-ate-o-serpro/thumb.png"]
+images: ["/images/articles/minha-trajetoria-ate-o-serpro/thumb.jpg"]
 tags: ["serpro", "concursos", "carreira", "servico-publico", "ti"]
 authors:
   - name: Felipe Ferreira
